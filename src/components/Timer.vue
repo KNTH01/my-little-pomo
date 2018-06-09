@@ -1,7 +1,9 @@
 <template>
   <div>
     <p class="timer">
-      {{ displayedTimer }}
+      {{ timerAsSeconds }}
+      <br>
+      {{ timerGetMinutes }} : {{ timerGetSeconds }}
     </p>
   </div>
 </template>
@@ -12,14 +14,19 @@ import moment from 'moment'
 export default {
   data () {
     return {
-      timer: moment.duration(1, 'minutes')
+      timer: moment.duration(25, 'minutes')
     }
   },
 
   computed: {
-    displayedTimer () {
-      // return this.timer.as('minutes')
+    timerAsSeconds () {
       return this.timer.as('seconds')
+    },
+    timerGetSeconds () {
+      return this.timer.get('seconds')
+    },
+    timerGetMinutes () {
+      return this.timer.get('minutes')
     }
   },
 
@@ -27,7 +34,7 @@ export default {
     const interval = setInterval(() => {
       this.timer.subtract(1, 'second')
 
-      if (this.timer.get('seconds') === 0) {
+      if (this.timerAsSeconds === 0) {
         clearInterval(interval)
       }
     }, 1000)
