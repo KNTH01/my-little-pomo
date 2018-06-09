@@ -17,7 +17,7 @@
 
 <script>
 import moment from 'moment'
-import TimerControllers from './Controllers'
+import TimerControllers from './Controllers.vue'
 
 export default {
   components: {
@@ -26,7 +26,8 @@ export default {
 
   data () {
     return {
-      timer: moment.duration(25, 'minutes')
+      audioNotification: new Audio('/audio/notification.mp3'),
+      timer: moment.duration(0.1, 'minutes')
     }
   },
 
@@ -47,7 +48,7 @@ export default {
       this.timer.subtract(1, 'second')
 
       if (this.timerAsSeconds === 0) {
-        clearInterval(interval)
+        this.sessionFinished(interval)
       }
     }, 1000)
   },
@@ -55,6 +56,22 @@ export default {
   methods: {
     resetTimer (minutes) {
       this.timer = moment.duration(minutes, 'minutes')
+    },
+
+    sessionFinished (interval) {
+      clearInterval(interval)
+      this.audioNotification.play()
+
+      let i = 0
+
+      const audioInterval = setInterval(() => {
+        this.audioNotification.play()
+        ++i
+
+        if (i === 2) {
+          clearInterval(audioInterval)
+        }
+      }, 1500)
     },
 
     addZero (number) {
