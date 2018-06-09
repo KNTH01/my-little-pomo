@@ -1,9 +1,10 @@
 <template>
   <div>
-    <p class="timer">
-      {{ timerAsSeconds }}
-      <br>
-      {{ timerGetMinutes }}:{{ timerGetSeconds }}
+    <p
+      class="timer"
+      @click="changeTimerDisplay"
+    >
+      {{ timerDisplay }}
     </p>
 
     <TimerControllers
@@ -26,12 +27,19 @@ export default {
 
   data () {
     return {
+      timerDisplayMode: 0,
       audioNotification: new Audio('/audio/notification.mp3'),
-      timer: moment.duration(0.1, 'minutes')
+      timer: moment.duration(1, 'minutes')
     }
   },
 
   computed: {
+    timerDisplay () {
+      return this.timerDisplayMode === 0
+        ? `${this.timerAsSeconds}`
+        : `${this.timerGetMinutes}:${this.timerGetSeconds}`
+    },
+
     timerAsSeconds () {
       return this.timer.as('seconds')
     },
@@ -78,6 +86,10 @@ export default {
       }, 1500)
     },
 
+    changeTimerDisplay () {
+      this.timerDisplayMode = this.timerDisplayMode === 0 ? 1 : 0
+    },
+
     addZero (number) {
       if (number < 10) {
         return `0${number}`
@@ -93,5 +105,6 @@ export default {
 <style scoped>
 .timer {
   font-size: 6rem;
+  cursor: pointer;
 }
 </style>
