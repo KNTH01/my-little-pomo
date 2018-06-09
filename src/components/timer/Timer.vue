@@ -1,18 +1,29 @@
 <template>
   <div>
-    <p
-      class="timer"
-      @click="changeTimerDisplay"
-    >
-      {{ timerDisplay }}
-    </p>
 
-    <TimerControllers
-      @resetTimer="resetTimer(25)"
-      @littleBreakTimer="resetTimer(5)"
-      @bigBreakTimer="resetTimer(15)"
-    />
+    <div class="columns">
+      <div
+        class="column"
+      >
+        <p
+          class="timer"
+          @click="changeTimerDisplay"
+        >
+          {{ timerDisplay }}
+        </p>
+      </div>
+    </div>
 
+    <div class="columns">
+      <TimerControllers
+        class="column"
+        @resetTimer="resetTimer(25)"
+        @littleBreakTimer="resetTimer(5)"
+        @bigBreakTimer="resetTimer(15)"
+      />
+    </div>
+
+  </div>
   </div>
 </template>
 
@@ -108,7 +119,13 @@ export default {
 
 <style lang="scss" scoped>
 .timer {
+  width: 350px;
+  height: 350px;
   font-size: 6rem;
   cursor: pointer;
+  border-radius: 50%;
+  border: 4px solid black;
+  padding-top: 6rem;
+  margin: auto;
 }
 </style>
