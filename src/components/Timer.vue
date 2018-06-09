@@ -23,10 +23,10 @@ export default {
       return this.timer.as('seconds')
     },
     timerGetSeconds () {
-      return this.timer.get('seconds')
+      return this.addZero(this.timer.get('seconds'))
     },
     timerGetMinutes () {
-      return this.timer.get('minutes')
+      return this.addZero(this.timer.get('minutes'))
     }
   },
 
@@ -38,6 +38,17 @@ export default {
         clearInterval(interval)
       }
     }, 1000)
+  },
+
+  methods: {
+    addZero (number) {
+      if (number < 10) {
+        return `0${number}`
+      }
+
+      // cast to string
+      return `${number}`
+    }
   }
 }
 </script>
