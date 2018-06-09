@@ -23,7 +23,6 @@
     </div>
 
   </div>
-  </div>
 </template>
 
 <script>
@@ -38,7 +37,7 @@ export default {
   data () {
     return {
       audioNotification: new Audio('/audio/notification.mp3'),
-      timer: moment.duration(25, 'minutes'),
+      timer: moment.duration(0.1, 'minutes'),
       timerDisplayMode: 1,
       timerInterval: null
     }
@@ -64,6 +63,7 @@ export default {
 
   mounted () {
     this.startSession()
+    this.askNotificationPermission()
   },
 
   methods: {
@@ -79,13 +79,14 @@ export default {
         this.timer.subtract(1, 'second')
 
         if (this.timerAsSeconds === 0) {
-          this.finishSession(this.timerInterval)
+          this.endSession(this.timerInterval)
         }
       }, 1000)
     },
 
-    finishSession (interval) {
+    endSession (interval) {
       clearInterval(interval)
+      this.notifySessionEnd()
       this.audioNotification.play()
 
       let i = 0
@@ -111,6 +112,28 @@ export default {
 
       // cast to string
       return `${number}`
+    },
+
+    askNotificationPermission () {
+      if (!('Notification' in window)) {
+        return
+      }
+
+      if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+          if (!('permission' in Notification)) {
+            // store user choice
+            Notification.permission = permission
+          }
+        })
+      }
+    },
+
+    notifySessionEnd () {
+      if (Notification.permission === 'granted') {
+        /* eslint-disable no-new */
+        new Notification('Your little pomo session has ended, go take a break! ;)')
+      }
     }
   }
 }
