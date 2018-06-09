@@ -6,7 +6,7 @@
         class="column"
       >
         <p
-          class="timer"
+          class="timer has-text-primary"
           @click="changeTimerDisplay"
         >
           {{ timerDisplay }}
@@ -124,7 +124,7 @@ export default {
   font-size: 6rem;
   cursor: pointer;
   border-radius: 50%;
-  border: 4px solid black;
+  border: 4px solid rgba(121, 87, 213, 0.2);
   padding-top: 6rem;
   margin: auto;
 }

@@ -1,19 +1,19 @@
 <template>
   <div class="buttons">
     <button
-      class="button is-light"
+      class="button is-light has-text-primary"
       @click="$emit('resetTimer')"
     >
       Let's go again
     </button>
     <button
-      class="button is-light"
+      class="button is-light has-text-primary"
       @click="$emit('littleBreakTimer')"
     >
       Little break
     </button>
     <button
-      class="button is-light"
+      class="button is-light has-text-primary"
       @click="$emit('bigBreakTimer')"
     >
       Big break

@@ -2,7 +2,7 @@
   <div class="home">
     <!-- <img src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <h1 class="title">My Little Pomo!</h1>
+    <h1 class="title has-text-primary">My Little Pomo!</h1>
     <br>
     <timer/>
   </div>
