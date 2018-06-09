@@ -3,7 +3,7 @@
     <p class="timer">
       {{ timerAsSeconds }}
       <br>
-      {{ timerGetMinutes }} : {{ timerGetSeconds }}
+      {{ timerGetMinutes }}:{{ timerGetSeconds }}
     </p>
   </div>
 </template>
