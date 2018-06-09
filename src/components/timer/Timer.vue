@@ -1,6 +1,5 @@
 <template>
-  <div>
-
+  <div class="timerContainer">
     <div class="columns">
       <div
         class="column"
@@ -118,6 +117,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .timer {
   width: 350px;
   height: 350px;
