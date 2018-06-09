@@ -27,9 +27,10 @@ export default {
 
   data () {
     return {
-      timerDisplayMode: 0,
       audioNotification: new Audio('/audio/notification.mp3'),
-      timer: moment.duration(1, 'minutes')
+      timer: moment.duration(25, 'minutes'),
+      timerDisplayMode: 1,
+      timerInterval: null
     }
   },
 
@@ -58,14 +59,17 @@ export default {
   methods: {
     resetTimer (minutes) {
       this.timer = moment.duration(minutes, 'minutes')
+      this.startSession()
     },
 
     startSession () {
-      const interval = setInterval(() => {
+      clearInterval(this.timerInterval)
+
+      this.timerInterval = setInterval(() => {
         this.timer.subtract(1, 'second')
 
         if (this.timerAsSeconds === 0) {
-          this.finishSession(interval)
+          this.finishSession(this.timerInterval)
         }
       }, 1000)
     },
@@ -102,7 +106,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .timer {
   font-size: 6rem;
   cursor: pointer;
