@@ -3,6 +3,7 @@
     <!-- <img src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <h1 class="title">My Little Pomo!</h1>
+    <br>
     <timer/>
   </div>
 </template>

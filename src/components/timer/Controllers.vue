@@ -1,22 +1,22 @@
 <template>
-  <div>
+  <div class="buttons">
     <button
-      class="button"
+      class="button is-light"
       @click="$emit('resetTimer')"
     >
-      let's go again
+      Let's go again
     </button>
     <button
-      class="button"
+      class="button is-light"
       @click="$emit('littleBreakTimer')"
     >
-      little break
+      Little break
     </button>
     <button
-      class="button"
+      class="button is-light"
       @click="$emit('bigBreakTimer')"
     >
-      big break
+      Big break
     </button>
   </div>
 </template>
