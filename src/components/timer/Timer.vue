@@ -44,13 +44,7 @@ export default {
   },
 
   mounted () {
-    const interval = setInterval(() => {
-      this.timer.subtract(1, 'second')
-
-      if (this.timerAsSeconds === 0) {
-        this.sessionFinished(interval)
-      }
-    }, 1000)
+    this.startSession()
   },
 
   methods: {
@@ -58,7 +52,17 @@ export default {
       this.timer = moment.duration(minutes, 'minutes')
     },
 
-    sessionFinished (interval) {
+    startSession () {
+      const interval = setInterval(() => {
+        this.timer.subtract(1, 'second')
+
+        if (this.timerAsSeconds === 0) {
+          this.finishSession(interval)
+        }
+      }, 1000)
+    },
+
+    finishSession (interval) {
       clearInterval(interval)
       this.audioNotification.play()
 
