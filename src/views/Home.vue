@@ -10,7 +10,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import Timer from '@/components/Timer.vue'
+import Timer from '@/components/timer/Timer.vue'
 
 export default {
   name: 'Home',

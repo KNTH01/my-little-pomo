@@ -5,13 +5,25 @@
       <br>
       {{ timerGetMinutes }}:{{ timerGetSeconds }}
     </p>
+
+    <TimerControllers
+      @resetTimer="resetTimer(25)"
+      @littleBreakTimer="resetTimer(5)"
+      @bigBreakTimer="resetTimer(15)"
+    />
+
   </div>
 </template>
 
 <script>
 import moment from 'moment'
+import TimerControllers from './Controllers'
 
 export default {
+  components: {
+    TimerControllers
+  },
+
   data () {
     return {
       timer: moment.duration(25, 'minutes')
@@ -41,6 +53,10 @@ export default {
   },
 
   methods: {
+    resetTimer (minutes) {
+      this.timer = moment.duration(minutes, 'minutes')
+    },
+
     addZero (number) {
       if (number < 10) {
         return `0${number}`
