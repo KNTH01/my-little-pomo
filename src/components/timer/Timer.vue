@@ -37,7 +37,7 @@ export default {
   data () {
     return {
       audioNotification: new Audio('/audio/notification.mp3'),
-      timer: moment.duration(0.1, 'minutes'),
+      timer: moment.duration(25, 'minutes'),
       timerDisplayMode: 1,
       timerInterval: null
     }
