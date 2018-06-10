@@ -28,6 +28,7 @@
 <script>
 import moment from 'moment'
 import TimerControllers from './Controllers.vue'
+import AudioNotification from '../../lib/audioNotification'
 
 export default {
   components: {
@@ -36,10 +37,10 @@ export default {
 
   data () {
     return {
-      audioNotification: new Audio('/audio/notification.mp3'),
-      timer: moment.duration(25, 'minutes'),
+      timer: moment.duration(0.05, 'minutes'),
       timerDisplayMode: 1,
-      timerInterval: null
+      timerInterval: null,
+      audioNotification: null
     }
   },
 
@@ -64,6 +65,7 @@ export default {
   mounted () {
     this.startSession()
     this.askNotificationPermission()
+    this.audioNotification = new AudioNotification()
   },
 
   methods: {
@@ -87,18 +89,7 @@ export default {
     endSession (interval) {
       clearInterval(interval)
       this.notifySessionEnd()
-      this.audioNotification.play()
-
-      let i = 0
-
-      const audioInterval = setInterval(() => {
-        this.audioNotification.play()
-        ++i
-
-        if (i === 2) {
-          clearInterval(audioInterval)
-        }
-      }, 1500)
+      this.audioNotification.play(3)
     },
 
     changeTimerDisplay () {
