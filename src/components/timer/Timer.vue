@@ -1,15 +1,29 @@
 <template>
-  <div class="timerContainer">
+  <div>
     <div class="columns">
       <div
         class="column"
       >
-        <p
-          class="timer has-text-primary"
-          @click="changeTimerDisplay"
-        >
-          {{ timerDisplay }}
-        </p>
+
+        <div class="timerContainer">
+          <loading-progress
+            :progress="0.51"
+            :indeterminate="false"
+            :counter-clockwise="false"
+            :hide-background="false"
+            size="350"
+            fill-duration="43"
+            rotation-duration="15"
+          />
+
+          <p
+            class="timer has-text-primary"
+            @click="changeTimerDisplay"
+          >
+            {{ timerDisplay }}
+          </p>
+        </div>
+
       </div>
     </div>
 
@@ -27,8 +41,17 @@
 
 <script>
 import moment from 'moment'
+
+import Vue from 'vue'
+import VueProgress from 'vue-progress-path'
+
 import TimerControllers from './Controllers.vue'
 import AudioNotification from '../../lib/audioNotification'
+import 'vue-progress-path/dist/vue-progress-path.css'
+
+Vue.use(VueProgress, {
+  defaultShape: 'circle'
+})
 
 export default {
   components: {
@@ -37,7 +60,7 @@ export default {
 
   data () {
     return {
-      timer: moment.duration(0.05, 'minutes'),
+      timer: moment.duration(25, 'minutes'),
       timerDisplayMode: 1,
       timerInterval: null,
       audioNotification: null
@@ -131,15 +154,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.timerContainer {
+  display: inline-flex;
+}
 
 .timer {
-  width: 350px;
-  height: 350px;
+  width: 400px;
+  height: 400px;
   font-size: 6rem;
   cursor: pointer;
-  border-radius: 50%;
-  border: 4px solid rgba(121, 87, 213, 0.2);
-  padding-top: 6rem;
+  padding-top: 8rem;
   margin: auto;
+}
+
+.vue-progress-path {
+  position: absolute;
+}
+</style>
+
+<style lang="scss">
+.timerContainer {
+  .vue-progress-path path {
+    stroke-width: 6;
+  }
+
+  .vue-progress-path .progress {
+    stroke: rgb(121, 87, 213);
+  }
+
+  .vue-progress-path .background {
+    stroke: rgba(121, 87, 213, 0.2);
+  }
 }
 </style>
