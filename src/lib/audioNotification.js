@@ -3,7 +3,7 @@ class AudioNotification {
     this.audioElement = new Audio('/audio/notification.mp3')
   }
 
-  play (playCount, intervalTime = 2000) {
+  play (playCount, intervalTime = 1500) {
     if (!this.audioElement) {
       return
     }
