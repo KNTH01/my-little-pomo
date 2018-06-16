@@ -9,7 +9,7 @@
           <loading-progress
             :progress="timerProgress"
             :indeterminate="false"
-            :counter-clockwise="true"
+            :counter-clockwise="false"
             :hide-background="false"
             size="350"
             fill-duration="43"
@@ -99,11 +99,12 @@ export default {
 
     startSession () {
       clearInterval(this.timerInterval)
+      const maxSeconds = this.timerAsSeconds
 
       this.timerInterval = setInterval(() => {
         // TODO extract to method.
         this.timer.subtract(1, 'second')
-        this.timerProgress = 1 - (this.timerAsSeconds / 1500)
+        this.timerProgress = 1 - (this.timerAsSeconds / maxSeconds)
 
         if (this.timerAsSeconds === 0) {
           this.endSession(this.timerInterval)
