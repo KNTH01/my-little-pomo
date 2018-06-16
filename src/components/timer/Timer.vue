@@ -7,9 +7,9 @@
 
         <div class="timerContainer">
           <loading-progress
-            :progress="0.51"
+            :progress="timerProgress"
             :indeterminate="false"
-            :counter-clockwise="false"
+            :counter-clockwise="true"
             :hide-background="false"
             size="350"
             fill-duration="43"
@@ -63,6 +63,7 @@ export default {
       timer: moment.duration(25, 'minutes'),
       timerDisplayMode: 1,
       timerInterval: null,
+      timerProgress: 0,
       audioNotification: null
     }
   },
@@ -73,7 +74,6 @@ export default {
         ? `${this.timerAsSeconds}`
         : `${this.timerGetMinutes}:${this.timerGetSeconds}`
     },
-
     timerAsSeconds () {
       return this.timer.as('seconds')
     },
@@ -101,7 +101,9 @@ export default {
       clearInterval(this.timerInterval)
 
       this.timerInterval = setInterval(() => {
+        // TODO extract to method.
         this.timer.subtract(1, 'second')
+        this.timerProgress = 1 - (this.timerAsSeconds / 1500)
 
         if (this.timerAsSeconds === 0) {
           this.endSession(this.timerInterval)
