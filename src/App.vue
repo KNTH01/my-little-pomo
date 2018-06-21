@@ -35,10 +35,7 @@ export default {
 </script>
 
 <style lang="scss">
-html,
-body {
-    height: 100%;
-}
+@import "./styles/main.scss";
 
 #app {
   text-align: center;
