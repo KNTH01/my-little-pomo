@@ -1,44 +1,36 @@
 <template>
-  <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns">
-          <div class="column">
+  <div>
+    <div class="timerContainer">
+      <loading-progress
+        :progress="timerProgress"
+        :indeterminate="false"
+        :counter-clockwise="false"
+        :hide-background="false"
+        size="350"
+        fill-duration="43"
+        rotation-duration="15"
+      />
 
-            <div class="timerContainer">
-              <loading-progress
-                :progress="timerProgress"
-                :indeterminate="false"
-                :counter-clockwise="false"
-                :hide-background="false"
-                size="350"
-                fill-duration="43"
-                rotation-duration="15"
-              />
-
-              <p
-                class="timer has-text-primary"
-                @click="changeTimerDisplay"
-              >
-                {{ timerDisplay }}
-              </p>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="columns">
-          <TimerControllers
-            class="column"
-            @resetTimer="resetTimer(25)"
-            @littleBreakTimer="resetTimer(5)"
-            @bigBreakTimer="resetTimer(15)"
-          />
-        </div>
-      </div>
+      <p
+        class="timer has-text-primary"
+        @click="changeTimerDisplay"
+      >
+        {{ timerDisplay }}
+      </p>
     </div>
 
-  </section>
+    <div class="columns">
+      <TimerControllers
+        class="column"
+        @resetTimer="resetTimer(25)"
+        @littleBreakTimer="resetTimer(5)"
+        @bigBreakTimer="resetTimer(15)"
+      />
+    </div>
+  </div>
+    </div>
+
+  </div>
 </template>
 
 <script>
