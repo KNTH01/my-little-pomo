@@ -2,7 +2,7 @@
   <div class="home">
     <!-- <img src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <section class="hero is-small">
+    <section class="hero is-small is-fullheight">
       <div class="hero-body">
         <div class="container">
           <h1 class="title has-text-primary">My Little Pomo!</h1>
