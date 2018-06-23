@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="has-text-centered">
     <div class="timerContainer">
       <loading-progress
         :progress="timerProgress"
@@ -7,7 +7,7 @@
         :counter-clockwise="false"
         :hide-background="false"
         size="350"
-        fill-duration="43"
+        fill-duration="2"
         rotation-duration="15"
       />
 
@@ -27,9 +27,6 @@
         @bigBreakTimer="resetTimer(15)"
       />
     </div>
-  </div>
-    </div>
-
   </div>
 </template>
 
