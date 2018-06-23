@@ -92,6 +92,8 @@ export default {
       clearInterval(this.timerInterval)
       const maxSeconds = this.timerAsSeconds
 
+      this.timerProgress = 1
+
       this.timerInterval = setInterval(() => {
         // TODO extract to method.
         this.timer.subtract(1, 'second')
