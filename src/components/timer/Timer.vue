@@ -1,30 +1,22 @@
 <template>
-  <div>
-    <div class="columns">
-      <div
-        class="column"
+  <div class="has-text-centered">
+    <div class="timerContainer">
+      <loading-progress
+        :progress="timerProgress"
+        :indeterminate="false"
+        :counter-clockwise="false"
+        :hide-background="false"
+        size="350"
+        fill-duration="2"
+        rotation-duration="15"
+      />
+
+      <p
+        class="timer has-text-primary"
+        @click="changeTimerDisplay"
       >
-
-        <div class="timerContainer">
-          <loading-progress
-            :progress="timerProgress"
-            :indeterminate="false"
-            :counter-clockwise="false"
-            :hide-background="false"
-            size="350"
-            fill-duration="43"
-            rotation-duration="15"
-          />
-
-          <p
-            class="timer has-text-primary"
-            @click="changeTimerDisplay"
-          >
-            {{ timerDisplay }}
-          </p>
-        </div>
-
-      </div>
+        {{ timerDisplay }}
+      </p>
     </div>
 
     <div class="columns">
@@ -35,7 +27,6 @@
         @bigBreakTimer="resetTimer(15)"
       />
     </div>
-
   </div>
 </template>
 
@@ -100,6 +91,8 @@ export default {
     startSession () {
       clearInterval(this.timerInterval)
       const maxSeconds = this.timerAsSeconds
+
+      this.timerProgress = 1
 
       this.timerInterval = setInterval(() => {
         // TODO extract to method.
